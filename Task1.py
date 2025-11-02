@@ -157,13 +157,13 @@ print("If a saved file 'bookings_final_state.csv' exists, it was loaded already.
 
 while True:
     print_menu()
-    choice = input('Choose a number: ')
+    choice = ask('Choose a number: ')
     if choice == '1':
 
         try:
-            room_no = input('Enter room id (like NAB101): ')
-            building = input('Enter building name (like NAB): ')
-            capacity_str = input('Enter capacity (a number): ')
+            room_no = ask('Enter room id (like NAB101): ')
+            building = ask('Enter building name (like NAB): ')
+            capacity_str = ask('Enter capacity (a number): ')
             if not capacity_str.isdigit():
                 print('Capacity must be a whole number. Try again.')
                 continue
@@ -178,8 +178,8 @@ while True:
     elif choice == '2':
 
         try:
-            room_no = input('Enter room id to book: ')
-            hour_str = input('Enter hour (0-23): ')
+            room_no = ask('Enter room id to book: ')
+            hour_str = ask('Enter hour (0-23): ')
             if not hour_str.isdigit():
                 print('Hour must be a number between 0 and 23.')
                 continue
@@ -191,16 +191,16 @@ while True:
         except TimeslotAlreadyBookedError:
             print('That hour is already booked for this room. Pick another hour.')
         except ValueError as e:
-            print('Bad input:', e)
+            print('Bad ask:', e)
         except Exception as e:
             print('Could not book the room:', e)
 
     elif choice == '3':
 
         print('\nType filters. Leave blank to skip a filter.')
-        building = input('Filter by building (exact name): ')
-        min_capacity_str = input('Filter by minimum capacity: ')
-        free_hour_str = input('Filter by free at hour (0-23): ')
+        building = ask('Filter by building (exact name): ')
+        min_capacity_str = ask('Filter by minimum capacity: ')
+        free_hour_str = ask('Filter by free at hour (0-23): ')
 
         if building == '':
             building = None
@@ -230,7 +230,7 @@ while True:
     elif choice == '4':
 
         try:
-            room_no = input('Enter room id to view: ')
+            room_no = ask('Enter room id to view: ')
             room = system.get_room(room_no)
             print('\n')
             print('Room details:')
